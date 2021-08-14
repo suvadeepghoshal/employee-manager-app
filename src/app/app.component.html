@@ -1,3 +1,12 @@
+<h1>This is the employee Manager app</h1>
 <div *ngFor="let employee of employees">
-  <div>{{employee.employeeName}}</div>
+  <div>
+    <p><strong>ID:</strong> {{employee.employeeId}}</p>
+    <p><strong>Name:</strong> {{employee.employeeName}}</p>
+    <p><strong>Email Address:</strong> {{employee.employeeEmail}}</p>
+    <p><strong>Job Title: </strong> {{employee.employeeJobTitle}}</p>
+    <p><strong>Phone Number:</strong> {{employee.employeePhoneNumber}}</p>
+    <p><strong>Employee Secret Code:</strong> {{employee.employeeRandomCode}}</p>
+  </div>
+  <hr>
 </div>
