@@ -1,8 +1,11 @@
-<mat-grid-list cols="2" rowHeight="3:1">
+<mat-grid-list cols="2" rowHeight="2:1">
   <mat-grid-tile *ngFor="let employee of employees">
     <mat-card>
-      <mat-card-title>{{employee.employeeName}}</mat-card-title>
-      <mat-card-subtitle>Employee Code: {{employee.employeeRandomCode}}</mat-card-subtitle>
+      <mat-card-header>
+        <div mat-card-avatar class="employee-profile-picture" style="background-image: url('{{employee.employeeProfilePictureUrl}}');"></div>
+        <mat-card-title>{{employee.employeeName}}</mat-card-title>
+        <mat-card-subtitle>Employee Code: {{employee.employeeRandomCode}}</mat-card-subtitle>
+      </mat-card-header>
       <mat-card-content>Email: {{employee.employeeEmail}}</mat-card-content>
       <mat-card-content>Job Title: {{employee.employeeJobTitle}}</mat-card-content>
       <mat-card-content>Phone Number: {{employee.employeePhoneNumber}}</mat-card-content>

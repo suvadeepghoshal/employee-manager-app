@@ -1,3 +1,7 @@
 .employee-action-row {
     margin-right: 8px;
 }
+
+.employee-profile-picture {
+    background-size: cover;
+}
