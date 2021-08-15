@@ -14,22 +14,22 @@ export class DialogComponent implements OnInit {
   }
 
   editEmployeeDialog() {
-    const dialogRef = this.dialog.open(EditEmployeeContent);
-    dialogRef.afterClosed().subscribe(result => {
+    const editDialog = this.dialog.open(EditEmployeeContent);
+    editDialog.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
 
   deleteEmployeeDialog() {
-    const dialogRef = this.dialog.open(DeleteEmployeeContent);
-    dialogRef.afterClosed().subscribe(result => {
+    const deleteDialog = this.dialog.open(DeleteEmployeeContent);
+    deleteDialog.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
 
   registerEmployeeDialog() {
-    const dialogRef = this.dialog.open(RegisterEmployeeContent);
-    dialogRef.afterClosed().subscribe(result => {
+    const registerDialog = this.dialog.open(RegisterEmployeeContent);
+    registerDialog.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
