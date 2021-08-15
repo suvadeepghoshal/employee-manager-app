@@ -2,16 +2,16 @@
   <mat-grid-tile *ngFor="let employee of employees">
     <mat-card>
       <mat-card-header>
-        <div mat-card-avatar class="employee-profile-picture" style="background-image: url('{{employee.employeeProfilePictureUrl}}');"></div>
-        <mat-card-title>{{employee.employeeName}}</mat-card-title>
-        <mat-card-subtitle>Employee Code: {{employee.employeeRandomCode}}</mat-card-subtitle>
+        <div mat-card-avatar class="employee-profile-picture"
+          style="background-image: url('{{employee?.employeeProfilePictureUrl}}');"></div>
+        <mat-card-title>{{employee?.employeeName}}</mat-card-title>
+        <mat-card-subtitle>Employee Code: {{employee?.employeeRandomCode}}</mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content>Email: {{employee.employeeEmail}}</mat-card-content>
-      <mat-card-content>Job Title: {{employee.employeeJobTitle}}</mat-card-content>
-      <mat-card-content>Phone Number: {{employee.employeePhoneNumber}}</mat-card-content>
+      <mat-card-content>Email: {{employee?.employeeEmail}}</mat-card-content>
+      <mat-card-content>Job Title: {{employee?.employeeJobTitle}}</mat-card-content>
+      <mat-card-content>Phone Number: {{employee?.employeePhoneNumber}}</mat-card-content>
       <div class="employee-action-row">
-        <button mat-button color="primary">Update</button>
-        <button mat-button color="warn">Delete</button>
+        <app-dialog></app-dialog>
       </div>
     </mat-card>
   </mat-grid-tile>

@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   public employees: Employee[] = [];
 
   constructor(private emplyeeService: EmployeeService) { }
-  
+
   ngOnInit() {
     this.getEmployees();
   }
