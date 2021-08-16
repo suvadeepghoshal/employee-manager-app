@@ -11,7 +11,7 @@
       <mat-card-content>Job Title: {{employee?.employeeJobTitle}}</mat-card-content>
       <mat-card-content>Phone Number: {{employee?.employeePhoneNumber}}</mat-card-content>
       <div class="employee-action-row">
-        <app-dialog></app-dialog>
+        <app-dialog [employee]="employee"></app-dialog>
       </div>
     </mat-card>
   </mat-grid-tile>

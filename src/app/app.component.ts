@@ -11,14 +11,14 @@ import { EmployeeService } from './employee.service';
 export class AppComponent implements OnInit {
   public employees: Employee[] = [];
 
-  constructor(private emplyeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService) { }
 
   ngOnInit() {
     this.getEmployees();
   }
 
   public getEmployees(): void {
-    this.emplyeeService.getEmployees().subscribe(
+    this.employeeService.getEmployees().subscribe(
       (response: Employee[]) => {
         this.employees = response; // what ever we get in the response store in the employees[]
       }, (error: HttpErrorResponse) => {

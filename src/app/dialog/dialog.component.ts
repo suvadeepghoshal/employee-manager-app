@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AppComponent } from '../app.component';
+import { Employee } from '../employee';
 
 @Component({
   selector: 'app-dialog',
@@ -8,13 +10,17 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class DialogComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public appComponent: AppComponent) { }
+
+  @Input()
+  public employee!: Employee;
 
   ngOnInit(): void {
+
   }
 
-  editEmployeeDialog() {
-    const editDialog = this.dialog.open(EditEmployeeContent);
+  editEmployeeDialog(employee: Employee) {
+    const editDialog = this.dialog.open(EditEmployeeContent, {data: employee});
     editDialog.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
@@ -41,7 +47,9 @@ export class DialogComponent implements OnInit {
   selector: 'app-dialog',
   templateUrl: './dialog.content.edit.html',
 })
-export class EditEmployeeContent { }
+export class EditEmployeeContent {
+  constructor(@Inject(MAT_DIALOG_DATA) public employee: Employee) { }
+}
 
 @Component({
   selector: 'app-dialog',
