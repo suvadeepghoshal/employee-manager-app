@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Employee } from '../employee';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-dialog',
@@ -9,13 +11,13 @@ import { Employee } from '../employee';
 })
 export class DialogComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private employeeSerive: EmployeeService) { }
 
   @Input()
   public employee!: Employee;
 
   ngOnInit(): void {
-
+    this.employeeSerive.getEmployees();
   }
 
   closeModal(): void {
@@ -62,8 +64,19 @@ export class EditEmployeeContent {
   templateUrl: './dialog.content.delete.html',
 })
 export class DeleteEmployeeContent {
-  constructor(@Inject(MAT_DIALOG_DATA) public employee: Employee, public dialogRef: MatDialogRef<DeleteEmployeeContent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public employee: Employee, public dialogRef: MatDialogRef<DeleteEmployeeContent>, private employeeService: EmployeeService) { }
   closeModal(): void {
+    this.dialogRef.close();
+  }
+  deleteEmployee(employeeId: number): void {
+    this.employeeService.deleteEmployee(employeeId).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.employeeService.getEmployees();
+      }, (error: HttpErrorResponse) => {
+        console.error(error.message);
+      }
+    );
     this.dialogRef.close();
   }
 }
