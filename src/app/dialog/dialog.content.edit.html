@@ -1,12 +1,18 @@
-<p mat-dialog-title>This is for editing details of: {{employee.employeeName}}</p>
-<p>Details are</p>
-<div>
-    <p>ID: {{employee?.employeeId}}</p>
-    <p>Name: {{employee?.employeeName}}</p>
-    <p>Email: {{employee?.employeeEmail}}</p>
-    <p>Job title: {{employee?.employeeJobTitle}}</p>
-    <p>Phone: {{employee?.employeePhoneNumber}}</p>
-    <p>Secret code: {{employee?.employeeRandomCode}}</p>
-    <p><img src="{{employee?.employeeProfilePictureUrl}}" alt="{{employee.employeeName}}" [height]="50" [width]="50">
-    </p>
+<div mat-dialog-content>
+    <h3 mat-dialog-title>This is for editing details of: {{employee.employeeName}}</h3>
+    <p>Details are</p>
+    <div>
+        <p>ID: {{employee?.employeeId}}</p>
+        <p>Name: {{employee?.employeeName}}</p>
+        <p>Email: {{employee?.employeeEmail}}</p>
+        <p>Job title: {{employee?.employeeJobTitle}}</p>
+        <p>Phone: {{employee?.employeePhoneNumber}}</p>
+        <p>Secret code: {{employee?.employeeRandomCode}}</p>
+        <p><img src="{{employee?.employeeProfilePictureUrl}}" alt="{{employee.employeeName}}" [height]="50"
+                [width]="50">
+        </p>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="closeModal()">Cancel</button>
+    </div>
 </div>

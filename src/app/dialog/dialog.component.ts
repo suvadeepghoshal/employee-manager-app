@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Employee } from '../employee';
 
 @Component({
@@ -18,6 +18,10 @@ export class DialogComponent implements OnInit {
 
   }
 
+  closeModal(): void {
+    this.dialog.closeAll();
+  }
+
   editEmployeeDialog(employee: Employee) {
     const editDialog = this.dialog.open(EditEmployeeContent, { data: employee });
     editDialog.afterClosed().subscribe(result => {
@@ -25,8 +29,8 @@ export class DialogComponent implements OnInit {
     });
   }
 
-  deleteEmployeeDialog(employeeId: number) {
-    const deleteDialog = this.dialog.open(DeleteEmployeeContent, { data: employeeId });
+  deleteEmployeeDialog(employee: Employee) {
+    const deleteDialog = this.dialog.open(DeleteEmployeeContent, { data: employee });
     deleteDialog.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
@@ -47,7 +51,10 @@ export class DialogComponent implements OnInit {
   templateUrl: './dialog.content.edit.html',
 })
 export class EditEmployeeContent {
-  constructor(@Inject(MAT_DIALOG_DATA) public employee: Employee) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public employee: Employee, public dialogRef: MatDialogRef<EditEmployeeContent>) { }
+  closeModal(): void {
+    this.dialogRef.close();
+  }
 }
 
 @Component({
@@ -55,7 +62,10 @@ export class EditEmployeeContent {
   templateUrl: './dialog.content.delete.html',
 })
 export class DeleteEmployeeContent {
-  constructor(@Inject(MAT_DIALOG_DATA) public employeeId: number) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public employee: Employee, public dialogRef: MatDialogRef<DeleteEmployeeContent>) { }
+  closeModal(): void {
+    this.dialogRef.close();
+  }
 }
 
 @Component({
