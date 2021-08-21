@@ -1,6 +1,5 @@
-import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AppComponent } from '../app.component';
 import { Employee } from '../employee';
 
 @Component({
@@ -10,7 +9,7 @@ import { Employee } from '../employee';
 })
 export class DialogComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, public appComponent: AppComponent) { }
+  constructor(public dialog: MatDialog) { }
 
   @Input()
   public employee!: Employee;
@@ -20,14 +19,14 @@ export class DialogComponent implements OnInit {
   }
 
   editEmployeeDialog(employee: Employee) {
-    const editDialog = this.dialog.open(EditEmployeeContent, {data: employee});
+    const editDialog = this.dialog.open(EditEmployeeContent, { data: employee });
     editDialog.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
 
-  deleteEmployeeDialog() {
-    const deleteDialog = this.dialog.open(DeleteEmployeeContent);
+  deleteEmployeeDialog(employeeId: number) {
+    const deleteDialog = this.dialog.open(DeleteEmployeeContent, { data: employeeId });
     deleteDialog.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
@@ -55,7 +54,9 @@ export class EditEmployeeContent {
   selector: 'app-dialog',
   templateUrl: './dialog.content.delete.html',
 })
-export class DeleteEmployeeContent { }
+export class DeleteEmployeeContent {
+  constructor(@Inject(MAT_DIALOG_DATA) public employeeId: number) { }
+}
 
 @Component({
   selector: 'app-dialog',
